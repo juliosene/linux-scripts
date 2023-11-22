@@ -1,9 +1,9 @@
-sudo apt install containerd
+sudo apt install -y containerd
 sudo mkdir /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml
 sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
 sudo swapoff -a
-sed -i 's/\/swap.img/# \/swap.img/g /etc/fstab
+sed -i 's/\/swap.img/# \/swap.img/g' /etc/fstab
 sudo modprobe overlay
 sudo modprobe br_netfilter
 cat<<EOF | sudo tee /etc/sysctl.d/kubernetes.conf
